@@ -21,7 +21,7 @@ Technical Reference: This script implements the policy removal method described 
 Windows **PowerShell** input:
 
 ```bash
-C:                             # your local disk letter
+C:
 cd C:\
 ./disable-WHCP.ps1
 ```
