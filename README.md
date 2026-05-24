@@ -1,70 +1,27 @@
-# C++ Project Template
+# Disable Windows Driver WHCP Certification Policy
 
-Welcome to your C++ Project Template. This template adheres to the Google Style Guide and utilizes the Bazel framework.
+## Overview
 
-## You need change template files
+This repository provides a PowerShell (.ps1) script designed to automate the process of disabling the Windows security policy that blocks the loading of drivers due to Windows Hardware Compatibility Program (WHCP) Certification enforcement.
 
-| File | Config |
-| --- | --- |
-| LICENSE | `<YEAR>` and `<COPYRIGHT HOLDER>` |
-| main.cc | `<YEAR>` and `<COPYRIGHT HOLDER>` |
-| release_version.yml | `<YEAR>` and `<COPYRIGHT HOLDER>` |
-| .clang-format | `Language` default is `Cpp` |
-| package.json | `name` default is `my-project` |
-| .vscode/tasks.json | definition of how to compile |
-| .bazelrc | configure compilation options in the `.bazelrc` file |
-| release_version.yml | custom release workflow |
+## Background
 
-## You need install VSCode Extension
+Following the security updates initiated in April 2026, Windows enforces stricter requirements for kernel-mode drivers, often blocking those that rely on legacy cross-signing instead of modern WHCP certification. This can prevent legacy hardware or software from functioning correctly.
 
-- C/C++
-- clangd
-- Bazel
-- Clang-Format
-- EditorConfig
+This script follows the official procedures documented by Microsoft to bypass these specific driver loading restrictions.
 
-## Project Directory Structure
+Technical Reference: This script implements the policy removal method described in the Microsoft Support: [The Windows Driver Policy](https://support.microsoft.com/en-us/windows/the-windows-driver-policy-ecd2a78c-750c-415d-93f2-e37302ce0443) article (refer to the "How do I turn off the Windows Driver Policy?" section).
 
-> [!WARNING]
-> Before importing any library, you must verify that it supports your project's current C++ standard to avoid introducing elusive, low-level bugs.
+## How use it
 
-**External dependencies are typically managed via Bazel.**
+- Download `disable-WHCP.ps1` to `C:\`
 
-```text
-Project/
-├── MODULE.bazel
-├── ICENSE
-├── src/                       # source code for internal implementation
-│   └── encoding/              # example module directory
-│       ├── BUILD
-│       ├── base85.cc
-│       ├── base85.h
-│       └── base85_test.cc
-├── include/                   # public headers and exported interfaces
-└── third_party/               # local external libraries/dependencies
-```
-
-## How use this C/C++ project template
-
-> [!TIP]
-> This template uses pre-commit hooks for code linting and commit message validation. To ensure these hooks function correctly, Node.js and npm must be installed on your system, as they are required to run commitlint.
+- launch `PowerShell` as an `Administrator`.
 
 Windows **PowerShell** input:
 
 ```bash
-E:                             # your local disk letter
-cd E:\
-gh repo create <MY-NEW-PROJECT> --template "x1nv/cpp-project-template" --public --clone
-cd <MY-NEW-PROJECT>
-npm install                    # for install Commitizen to Git commit
-pre-commit install             # Google rule check and commitlint check
-pre-commit install --hook-type commit-msg
-code .                         # launch vscode
-```
-
-## Hot use Commitizen to Git commit
-
-```bash
-git add .
-cz
+C:                             # your local disk letter
+cd C:\
+./disable-WHCP.ps1
 ```

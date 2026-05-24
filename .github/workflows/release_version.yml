@@ -1,4 +1,4 @@
-# Copyright (c) <YEAR> <COPYRIGHT HOLDER>.
+# Copyright (c) 2026 x1nv.
 # Liensed under the MIT License.
 #
 # This workflow manages the release process for the project.
@@ -44,13 +44,6 @@ jobs:
                   token: ${{ secrets.ALL_PERMISSIONS_TOKEN }}
                   release-type: simple
 
-            # Once the release-please PR is merged,
-            # workflow will handle artifact compilation and release publishing
-            - name: Build Program
-              if: ${{ steps.release-please.outputs.release_created }}
-              run: |
-                  bazel build --compilation_mode=opt --copt=-O2 //src/encoding:encoding
-
             - name: Upload Release Artifacts
               if: ${{ steps.release-please.outputs.release_created }}
               uses: softprops/action-gh-release@v2
@@ -62,10 +55,10 @@ jobs:
                       ${{ steps.release-please.outputs.body }}
 
                       ---
-                      ### 📦 Installation
-                      Download the binary attached below to get started.
+                      ### 📦 How to use
+                      Download disable-WHCP.ps1 and run it.
 
                       ### 📝 Changelog
                       See the full [CHANGELOG.md](CHANGELOG.md) for detailed changes.
                   # Specify the artifacts to be uploaded to the release
-                  files: bazel-bin/src/encoding/encoding.exe
+                  files: /src/disable-WHCP.ps1

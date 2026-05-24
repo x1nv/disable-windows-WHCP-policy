@@ -2,13 +2,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch",
-            "type": "cppvsdbg",
+            "name": "Debug: disable-WHCP",
+            "type": "PowerShell",
             "request": "launch",
-            "program": "${workspaceFolder}/bazel-bin/src/encoding/encoding.exe",
+            "script": "${workspaceFolder}/src/disable-WHCP.ps1",
             "args": [],
-            "cwd": "${workspaceFolder}",
-            "preLaunchTask": "build:debug"
+            "cwd": "${workspaceFolder}"
         }
     ]
 }
