@@ -1,0 +1,60 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build:debug",
+            "type": "shell",
+            "command": "bazel",
+            "args": [
+                "build",
+                "--config=debug",
+                "//src/encoding:encoding"
+            ],
+            "group": "build",
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "build:release",
+            "type": "shell",
+            "command": "bazel",
+            "args": [
+                "build",
+                "--config=release",
+                "//src/encoding:encoding"
+            ],
+            "group": "build",
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        },
+        // Use the official Bazel-recommended compile_commands.
+        // json generator from kiron1 to enable clang-tidy for code analysis
+        // See: http://bazel.build/install/ide
+        //
+        // You need to download its binary (.exe) and add the directory path
+        // to your PATH environment variable in order to use it.
+        //
+        // Typically, you only need to trigger it to rebuild compile_commands.json
+        // when there are changes to your BUILD or MODULE.bazel files.
+        {
+            "label": "Run bazel-compile-commands",
+            "command": "bazel-compile-commands",
+            "type": "shell",
+            "isBackground": true,
+            "hide": true
+        },
+        {
+            "label": "clang-tidy:refresh",
+            "command": "${command:clangd.restart}",
+            "isBackground": true,
+            "dependsOn": [
+                "Run bazel-compile-commands"
+            ],
+            "group": {
+                "kind": "build"
+            }
+        }
+    ]
+}

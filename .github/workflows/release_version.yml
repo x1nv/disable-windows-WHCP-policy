@@ -1,0 +1,71 @@
+# Copyright (c) <YEAR> <COPYRIGHT HOLDER>.
+# Liensed under the MIT License.
+#
+# This workflow manages the release process for the project.
+# It requires a "Production" environment to be configured in the GitHub repository settings.
+# Additionally, ensure a repository secret named "ALL_PERMISSIONS_TOKEN" is created
+# with appropriate permissions to allow release-please to
+# create releases and pull requests.
+
+name: "Release new version"
+
+on:
+    push:
+        branches: ["main"]
+    pull_request:
+        branches: ["main"]
+
+jobs:
+    run-actionlint:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            pull-requests: write
+        steps:
+            - uses: actions/checkout@v6
+            # must use linux runner
+            - uses: devops-actions/actionlint@e7ee33fbf5aa8c9f9ee1145137f3e52e25d6a35b
+    build-and-release:
+        needs: run-actionlint
+        runs-on: windows-latest
+        environment: Production
+        permissions:
+            contents: write
+            pull-requests: write
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v6
+              with:
+                  fetch-depth: 0
+
+            - uses: googleapis/release-please-action@v5
+              id: release-please
+              with:
+                  token: ${{ secrets.ALL_PERMISSIONS_TOKEN }}
+                  release-type: simple
+
+            # Once the release-please PR is merged,
+            # workflow will handle artifact compilation and release publishing
+            - name: Build Program
+              if: ${{ steps.release-please.outputs.release_created }}
+              run: |
+                  bazel build --compilation_mode=opt --copt=-O2 //src/encoding:encoding
+
+            - name: Upload Release Artifacts
+              if: ${{ steps.release-please.outputs.release_created }}
+              uses: softprops/action-gh-release@v2
+              with:
+                  tag_name: ${{ steps.release-please.outputs.tag_name }}
+                  body: |
+                      ## 🚀 Release Notes
+
+                      ${{ steps.release-please.outputs.body }}
+
+                      ---
+                      ### 📦 Installation
+                      Download the binary attached below to get started.
+
+                      ### 📝 Changelog
+                      See the full [CHANGELOG.md](CHANGELOG.md) for detailed changes.
+                  # Specify the artifacts to be uploaded to the release
+                  files: bazel-bin/src/encoding/encoding.exe

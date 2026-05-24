@@ -1,0 +1,13 @@
+repos:
+  - repo: https://github.com/cpplint/cpplint
+    rev: 2.0.0
+    hooks:
+      - id: cpplint
+  - repo: local
+    hooks:
+      - id: commitlint
+        name: commitlint
+        entry: npx commitlint --edit
+        language: node
+        stages: [commit-msg]
+        pass_filenames: false
