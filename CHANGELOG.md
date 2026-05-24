@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/x1nv/disable-WHCP/compare/v1.1.2...v1.2.0) (2026-05-24)
+
+
+### Features
+
+* improve file deletion logic with elevated permissions ([0ffbd05](https://github.com/x1nv/disable-WHCP/commit/0ffbd0580c51b12cebce9536afabeae419d87f4f))
+
 ## [1.1.2](https://github.com/x1nv/disable-WHCP/compare/v1.1.1...v1.1.2) (2026-05-24)
 
 
