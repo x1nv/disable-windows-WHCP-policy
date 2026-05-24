@@ -42,7 +42,6 @@ $cip = @(
     "{784C4414-79F4-4C32-A6A5-F0FB42A51D0D}",
     "{8F9CB695-5D48-48D6-A329-7202B44607E3}")
 foreach ($d in $dirs) {
-    # 遍历 ID 列表
     foreach ($id in $cip) {
         $targetFile = Join-Path -Path $d -ChildPath "$id.cip"
         Remove-FileForce -Path $targetFile
