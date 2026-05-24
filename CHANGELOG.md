@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/x1nv/disable-WHCP/compare/v1.1.0...v1.1.1) (2026-05-24)
+
+
+### Bug Fixes
+
+* clean up garbled text in comments ([2a17c8f](https://github.com/x1nv/disable-WHCP/commit/2a17c8f93b7d85f1ae9f782a7967854d0212cada))
+
 ## [1.1.0](https://github.com/x1nv/disable-WHCP/compare/v1.0.0...v1.1.0) (2026-05-24)
 
 
