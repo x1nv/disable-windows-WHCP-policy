@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/x1nv/disable-WHCP/compare/v1.1.1...v1.1.2) (2026-05-24)
+
+
+### Bug Fixes
+
+* unable to execute non-local .ps1 files ([0256d0e](https://github.com/x1nv/disable-WHCP/commit/0256d0ed314e3aae1c1e8bf0e5a65abb024d4de3))
+
 ## [1.1.1](https://github.com/x1nv/disable-WHCP/compare/v1.1.0...v1.1.1) (2026-05-24)
 
 
