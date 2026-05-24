@@ -23,5 +23,6 @@ Windows **PowerShell** input:
 ```bash
 C:
 cd C:\
+Unblock-File -Path "./disable-WHCP.ps1"     # request allow execution this .ps1
 ./disable-WHCP.ps1
 ```
