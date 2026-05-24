@@ -61,4 +61,4 @@ jobs:
                       ### 📝 Changelog
                       See the full [CHANGELOG.md](CHANGELOG.md) for detailed changes.
                   # Specify the artifacts to be uploaded to the release
-                  files: /src/disable-WHCP.ps1
+                  files: src/disable-WHCP.ps1
