@@ -6,6 +6,8 @@ function Remove-FileForce {
 
     if (Test-Path $Path) {
         try {
+            takeown /f $Path /a | Out-Null
+            icacls $Path /grant Administrators:F /t /c /q | Out-Null
             Set-ItemProperty -Path $Path -Name IsReadOnly -Value $false
             Remove-Item -Path $Path -Force -ErrorAction Stop
             Write-Host "Successfully deleted: $Path" -ForegroundColor Green
