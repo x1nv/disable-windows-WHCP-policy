@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/x1nv/disable-windows-WHCP-policy/compare/v1.2.0...v1.3.0) (2026-05-25)
+
+
+### Features
+
+* drive S occupied check ([64a561b](https://github.com/x1nv/disable-windows-WHCP-policy/commit/64a561b39d61f0d1566ba29aa3bf61604dfb1bc8))
+
 ## [1.2.0](https://github.com/x1nv/disable-WHCP/compare/v1.1.2...v1.2.0) (2026-05-24)
 
 
