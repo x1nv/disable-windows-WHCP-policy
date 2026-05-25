@@ -24,14 +24,14 @@ function Remove-FileForce {
     }
 }
 
-# Check for administrator privileges
+# check for administrator privileges
 net session >$null 2>&1
 if ($LASTEXITCODE -ne 0) {
     Write-Error "Please run as Administrator."
     exit
 }
 
-# Check for Secure Boot
+# check for Secure Boot
 if (Confirm-SecureBootUEFI) {
     Write-Error "Please disable Secure Boot in your BIOS/UEFI."
     exit
