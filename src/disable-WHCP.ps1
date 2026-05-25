@@ -37,6 +37,11 @@ if (Confirm-SecureBootUEFI) {
     exit
 }
 
+if (Get-PSDrive -Name S -ErrorAction SilentlyContinue) {
+    Write-Error "S: drive is occupied."
+    exit
+}
+
 mountvol S: /s
 
 # delete policy files
