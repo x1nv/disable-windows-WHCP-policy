@@ -14,9 +14,10 @@ Technical Reference: This script implements the policy removal method described 
 
 ## How use it
 
+- Restart your computer and enter the BIOS, set Secure Boot to disabled
 - Download `disable-WHCP.ps1` to `C:\`
-
 - launch `PowerShell` as an `Administrator`.
+- Restart your computer and enter the BIOS, re-enable Secure Boot
 
 Windows **PowerShell** input:
 
